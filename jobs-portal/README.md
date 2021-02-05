@@ -14,6 +14,11 @@ TO RUN THIS PROJECT
 10. import database
 11. on XAMPP, start running database and Apache web server
 
+Additional note
+
+-   this project also runs online on Heroku as part of testing phase
+    https://ataccama-jobs.herokuapp.com/jobs
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
