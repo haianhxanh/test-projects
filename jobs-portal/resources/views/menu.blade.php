@@ -1,2 +1,6 @@
-<a href="/jobs">Home</a>
-<a href="/about">About us</a>
+    <div>
+  <a href="/">Home</a>
+  <a href="/about">About us</a>
+  <a href="/jobs">Career</a>
+</div>
+

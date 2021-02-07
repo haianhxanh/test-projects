@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\JobPosition;
 use App\Models\Applicant;
+
 
 class JobController extends Controller
 {
@@ -24,27 +26,40 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
-        // $applicant = new Applicant;
-
-        // $job_id = $request->input('job_position_id');
-
-        // $applicant->job_position_id = $request->input('job_position_id');
-        // $applicant->first_name = $request->input('first_name');
-        // $applicant->last_name = $request->input('last_name');
-        // $applicant->email = $request->input('email');
-        // $applicant->phone = $request->input('phone');
-        // $applicant->linkedin = $request->input('linkedin');
-        // $applicant->why_you = $request->input('why_you');
-        // $applicant->location = $request->input('location');
-        // $applicant->save();
-
-        // $this->validate($request, [
-        //     'first_name' => 'required|string|min:10|max:100'
-        // ]);
 
         $applicant = Applicant::create($request->all());
 
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|min:1',
+            'last_name' => 'required|min:1',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+            ['files.*' => 'mimes:doc,docx,pdf|max:5000'],
+            ['files.*.mimes' => 'Only jpeg,png and bmp images are allowed'],
+        ]);
+
+
+        if($request->hasFile('files'))
+        {
+            $files = $request->file('files');
+
+            foreach ($files as $i => $file) {
+            $fileNum = $i + 1; 
+            $origName = $file->getClientOriginalName();
+            $origExtension = $file->getClientOriginalExtension();
+            $fileName = 'ID-' . $applicant->id.'-file-'.$fileNum.'-'.$origName;
+            $file->move(public_path('files'), $fileName);
+        }
+        }
+
+        if ($validator->fails()) {
+        return redirect(url()->previous() .'#form')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
         session()->flash('successful_application', 'Thank you for your application, we will contact you soon');
+
         return view('success');
     }
 }

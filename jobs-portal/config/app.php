@@ -2,6 +2,8 @@
 
 return [
 
+    'allowedFileTypes' => 'doc,docx,pdf',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
