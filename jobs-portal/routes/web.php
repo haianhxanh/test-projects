@@ -27,5 +27,7 @@ Route::get('/jobs/success', 'JobsController@store');
 
 Route::get('/jobs/{id}/details', 'JobController@show');
 
+// Route::delete('/jobs/{id}/details', 'FileController@destroy');
+
 Route::post('/jobs/details', 'JobController@store');
 

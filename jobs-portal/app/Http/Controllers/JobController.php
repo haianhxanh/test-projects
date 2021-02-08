@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\JobPosition;
 use App\Models\Applicant;
+use App\Models\File;
 
 
 class JobController extends Controller
@@ -28,29 +29,54 @@ class JobController extends Controller
     {
 
         $applicant = Applicant::create($request->all());
+        $file = File::create($request->all());
+
+    
+        if($request->hasFile('files'))
+        {
+    
+             $files = $request->file('files');
+
+            foreach ($files as $i => $file) {
+
+                // $v = $request->validate([
+                // 'files.*' => 'mimes:doc,docx,pdf,jpg,jpeg|max:5240'
+                // ]);
+
+                // $file = $v['files'];
+
+                $fileNum = $i + 1; 
+                $origName = $file->getClientOriginalName();
+                $origExtension = $file->getClientOriginalExtension();
+                $fileName = 'ID-' . $applicant->id.'-file-'.$fileNum.'-'.$origName;
+
+
+                $file->move(public_path('files'), $fileName);
+
+
+                $applicant_id = DB::table('applicants')->max('id');
+                $file = new File;
+                $file->applicant_id = $applicant_id;
+                $file->name = $fileName;
+                $file->save();
+            }
+        }
+
 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|min:1',
             'last_name' => 'required|min:1',
             'phone' => 'required|numeric',
             'email' => 'required|email',
-            ['files.*' => 'mimes:doc,docx,pdf|max:5000'],
-            ['files.*.mimes' => 'Only jpeg,png and bmp images are allowed'],
+            'why_you' => 'required',
+            'location' => 'required',
+            [
+                'files.*.mime' => 'mimes:doc,docx,pdf,jpg,jpeg',
+                'files.*.size' => 'max:5240',
+                'files' => 'max: 5',
+            ],
         ]);
 
-
-        if($request->hasFile('files'))
-        {
-            $files = $request->file('files');
-
-            foreach ($files as $i => $file) {
-            $fileNum = $i + 1; 
-            $origName = $file->getClientOriginalName();
-            $origExtension = $file->getClientOriginalExtension();
-            $fileName = 'ID-' . $applicant->id.'-file-'.$fileNum.'-'.$origName;
-            $file->move(public_path('files'), $fileName);
-        }
-        }
 
         if ($validator->fails()) {
         return redirect(url()->previous() .'#form')

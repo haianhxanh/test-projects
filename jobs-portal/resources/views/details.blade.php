@@ -47,7 +47,7 @@
         <div class="form-group">
           <label for="phone">phone</label>
           <input class="phone form-control" type="text" name="phone" value="{{ old('phone') }}">
-                @error('phone')  
+          @error('phone')  
           <div class="error-msg">{{ $message }}</div>
           @enderror
         </div>
@@ -59,7 +59,10 @@
     
         <div class="form-group">
           <label for="why_you">why do you think you are the perfect match for Ataccama?</label>
-          <textarea rows="5" class="why_you form-control" type="textarea" name="why_you" value="{{ old('why_you') }}"></textarea>
+          <textarea rows="5" class="why_you form-control" type="textarea" name="why_you" value="{{ old('why_you') }}">{{ old('why_you') }}</textarea>
+          @error('why_you')  
+          <div class="error-msg">{{ $message }}</div>
+          @enderror
         </div>
     
         <div class="form-group">
@@ -69,16 +72,23 @@
             <option value="Toronto">Toronto</option>
             <option value="Sophia">Sophia</option>
           </select>
+          @error('location')  
+          <div class="error-msg">{{ $message }}</div>
+          @enderror
         </div>
     
        <div class="form-group">
           <div class="dropzone dz-clickable">
             <div id="dropzoneDragArea" class="dz-default dz-message dropzoneDragArea">
               <p>send us your resume and cover letter</p>
+              <li>please upload a maximum of 5 files</li>
+              <li>we accept formats pdf, doc, docx, jpg and jpeg only</li>
+              <li>all files cannot exceed 5M</li>
+              
               <label for="files" class="file-button form-control">Select files</label>
               <input type="file" name="files[]" multiple="true" id="files" style="display:none" onchange="displayFileName()">
                 @error('files')  
-                <div class="error-msg">{{ $message }}</div>
+                <div id="file-upload" class="error-msg">{{ $message }}</div>
                 @enderror
               <div id="file-name"></div>
             </div>
@@ -98,6 +108,8 @@
       <div>{{ $job->location }}</div>
     
       @endif
+
+    
 </div>
 </div>
   <script>
@@ -107,14 +119,22 @@
     let output = document.getElementById('file-name');
     let children = "";
     for(let i = 0; i < input.files.length; ++i) {
-      children += '<li>' + input.files.item(i).name + '</li>'
+      children += '<li class="uploaded-file">' + input.files.item(i).name + '</li>'
     }
-    output.innerHTML = '<ul>' + children + '</ul>'
+    output.innerHTML = `<div class="uploaded-file-list"><ul>${children}</ul>
+    
+
+       <button class="remove-file" type="button">remove files </button>
+      
+      </div>
+    `;
+
+      const removeFileBtn = document.querySelector('.remove-file');
+      removeFileBtn.addEventListener('click', ()=>{
+        document.querySelector('.uploaded-file-list').remove()
+      });
+
   }
+
   </script>
 @endsection
-
-
-
-
-
