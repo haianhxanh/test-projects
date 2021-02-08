@@ -12,7 +12,7 @@
       <div><h2>Location</h2>{{ $job->location }}</div>
         
           
-      <h3>Application form</h3>
+      <h3 class="centered-text">Application form</h3>
       <form class="form" method="post" 
       action="{{ action('JobController@store') }}" 
       enctype="multipart/form-data" id="form">
@@ -101,12 +101,6 @@
 </div>
 </div>
   <script>
-  //   let files = document.querySelectorAll("#files");
-  //   files.onchange = function(){
-  //     for(i=0; i<files.length; i++) {
-  //           document.querySelector("#file-name").textContent = this.files[i].name;
-  //     }
-  // }
 
   displayFileName = function() {
     let input = document.getElementById('files');
