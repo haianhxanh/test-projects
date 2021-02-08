@@ -1,12 +1,165 @@
 * {
     box-sizing: border-box;
-    color: red;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: darkblue;
 }
 
 body {
-    background-color: antiquewhite;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
-.job-title {
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid;
+    margin: 2rem 0;
+}
+
+a {
     text-decoration: none;
+}
+
+a:hover {
+    color: darkmagenta;
+}
+
+.home-body p {
+    font-size: 1.5rem;
+    margin: 2rem 1rem;
+}
+
+.home-content,
+.career-content {
+    width: 100%;
+    position: relative;
+}
+
+.home-content__img img,
+.career-content__img img {
+    width: 100%;
+    opacity: 0.5;
+}
+
+.career-content__img img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.home-content__heading,
+.career-content__heading {
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.career-content__heading {
+    height: 100%;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.career-posting-wrapper {
+    width: 100%;
+    border: 1px solid gray;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 25%);
+}
+
+.career-posting-wrapper:hover a {
+    color: darkmagenta;
+}
+
+.about-content p {
+    text-align: justify;
+}
+
+.jobs-details-content h4 {
+    text-align: center;
+    color: darkmagenta;
+}
+
+.jobs-details-content h1 {
+    text-align: center;
+}
+
+.jobs-details-content h3 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.jobs-details-content p {
+    text-align: justify;
+}
+
+.form-control {
+    width: 100%;
+    height: 2rem;
+    margin: 0.5rem 0;
+}
+
+textarea {
+    height: 4rem !important;
+}
+
+.file-button {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid darkmagenta;
+    border-radius: 4px;
+}
+
+.file-button:hover {
+    cursor: pointer;
+}
+
+.submit-btn {
+    margin: 1rem 0;
+    position: relative;
+}
+
+.submit-btn button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 2rem;
+    margin: 1.5rem 0;
+    letter-spacing: 0.4rem;
+    font-size: 16px;
+}
+
+.submit-btn button:hover {
+    cursor: pointer;
+    border: 1px solid darkmagenta;
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.7rem;
+}
+
+.success-content__msg {
+    margin: 2rem 0;
+}
+
+.success-body a:hover {
+    color: darkmagenta;
 }
