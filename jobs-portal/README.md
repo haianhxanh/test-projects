@@ -4,13 +4,13 @@ TO RUN THIS PROJECT
 2. run "composer install"
 3. cp .env.example .env
 4. generate new key with "php artisan key:generate"
-5. set up file permissions using chmod
+5. set up file and folder permissions
 6. set up vhost.host
 7. set up /etc/host
-8. create a new empty database
-9. run "php artisan migrate" to create database structure
-10. run "php artisan db:seed --class=JobPositionSeeder" to seed the data in database tables
-11. on XAMPP, start running database and Apache web server
+8. on XAMPP, start running database and Apache web server
+9. create a new empty database
+10. run "php artisan migrate" to create database structure
+11. run "php artisan db:seed --class=JobPositionSeeder" to seed the data in database tables
 
 Additional note
 
