@@ -82,7 +82,7 @@
             <div id="dropzoneDragArea" class="dz-default dz-message dropzoneDragArea">
               <p>send us your resume and cover letter</p>
               <li>please upload a maximum of 5 files</li>
-              <li>we accept formats pdf, doc, docx, jpg and jpeg only</li>
+              <li>accepted file types: docx, pdf, jpg</li>
               <li>all files cannot exceed 5M</li>
               
               <label for="files" class="file-button form-control">Select files</label>
