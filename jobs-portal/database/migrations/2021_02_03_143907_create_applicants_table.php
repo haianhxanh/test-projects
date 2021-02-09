@@ -37,3 +37,5 @@ class CreateApplicantsTable extends Migration
         Schema::dropIfExists('applicants');
     }
 }
+
+
