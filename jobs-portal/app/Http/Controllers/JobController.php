@@ -39,12 +39,6 @@ class JobController extends Controller
 
             foreach ($files as $i => $file) {
 
-                // $v = $request->validate([
-                // 'files.*' => 'mimes:doc,docx,pdf,jpg,jpeg|max:5240'
-                // ]);
-
-                // $file = $v['files'];
-
                 $fileNum = $i + 1; 
                 $origName = $file->getClientOriginalName();
                 $origExtension = $file->getClientOriginalExtension();
@@ -52,7 +46,6 @@ class JobController extends Controller
 
 
                 $file->move(public_path('files'), $fileName);
-
 
                 $applicant_id = DB::table('applicants')->max('id');
                 $file = new File;
